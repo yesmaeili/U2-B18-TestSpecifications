@@ -2,65 +2,82 @@
 U2-Block18-Writing Test Specifications
 
 Unit Test
-1. A function called "multiplication" that returns the product of the two input numbers.
+Unit Test Specifications:
 
-Expect multiplication(num1, num2) to return the product of two input numbers.
+1. A function called "multiplication" that returns the product of the two input numbers.
+Expect multiplication(2, 3) to be a number
 Expect multiplication(2, 3) to be equal to 6
-Expect multiplication(-2, 3) to be equal to -6
 Expect multiplication(0, 3) to be equal to 0
-Expect multiplication("2", 3) to be NaN
-Expect multiplication(2, Infinity) to be Infinity
-Expect multiplication(1.5, 2.5) to be equal to 3.75
-Expect multiplication(1e+25, 1e+25) to be equal to 1e+50
+Expect multiplication(-2, 3) to be equal to -6
+Expect multiplication(2, "a") to be an error
+Expect multiplication() to be an error
 
 
 2. A function called "concatOdds" takes two arrays of integers as arguments. It should return a single array that only contains the odd numbers, in ascending order, from both of the arrays.
-
-Test Specifications:
-
-Test Case 1: concatOdds([3, 2, 1], [9, 1, 1, 1, 4, 15, -1]) should return [-1, 1, 3, 9, 15]
-Test Case 2: concatOdds([], []) should return []
-Test Case 3: concatOdds([2, 4, 6], [1, 3, 5]) should return [1, 3, 5]
-Test Case 4: concatOdds([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]) should return [1, 3, 5, 7, 9]
-Test Case 5: concatOdds([1, 1, 1, 1], [3, 3, 3, 3]) should return [1, 3]
-Test Case 6: concatOdds([2, 4, 6], [8, 10, "a", "b", 13, 15, 17]) should return [13, 15, 17]
-Test Case 7: concatOdds([-5, -3, -1, 0, 1, 3, 5], [2, 4, 6]) should return [-5, -3, -1, 1, 3, 5]
+Expect concatOdds([3, 2, 1], [9, 1, 1, 1, 4, 15, -1]) to be an array
+Expect concatOdds([3, 2, 1], [9, 1, 1, 1, 4, 15, -1]) to be equal to [-1, 1, 3, 9, 15]
+Expect concatOdds([], []) to be equal to []
+Expect concatOdds([2, 4], [8, 6]) to be equal to []
+Expect concatOdds([1, 3, 5], [1, 3, 5]) to be equal to [1, 3, 5]
+Expect concatOdds([2, 3, 5], [1, 3, 5]) to be equal to [1, 3, 5]
+Expect concatOdds([2, 4], [1, 3, 5]) to be equal to [1, 3, 5]
+Expect concatOdds([1, 3, 5], []) to be equal to [1, 3, 5]
+Expect concatOdds([], [1, 3, 5]) to be equal to [1, 3, 5]
+Expect concatOdds(["a", 3], [1, 3, 5]) to be an error
+Expect concatOdds([1, 3, 5], [1, "a"]) to be an error
+Expect concatOdds([1, 3, 5], [1, 3, 3, 5]) to be equal to [1, 3, 5]
 
 Functional Tests:
-1. A shopping cart checkout feature that allows a user to check out as a guest (without an account), or as a logged-in user. They should be allowed to do either, but should be asked if they want to create an account or log in if they check out as a guest.
+Functional Tests for Shopping Cart Checkout Feature:
 
-Here are some functional test specifications for the shopping cart checkout feature:
+1. Test Case: Checkout as a guest
+Expectation: A user can check out as a guest without creating an account. The system should not require the user to log in.
 
-1. Test for empty cart:
-- Expect user to see a message indicating that their cart is empty when they try to checkout.
-- Expect user to be redirected to the cart page when they click on the "Back to Cart" button.
+Specifications:
+- Open the website and add items to the shopping cart.
+- Click on the checkout button and select "checkout as a guest" option.
+- Verify that the system prompts for the necessary information like shipping address, billing address, and payment information.
+- Verify that after submitting the checkout information, the system displays a confirmation message and a summary of the order.
+- Verify that the user receives an order confirmation email with the details of the order.
 
-2. Test for guest checkout:
-- Expect user to see an option to checkout as a guest on the checkout page.
-- Expect user to be prompted to enter their shipping and billing information.
-- Expect user to be asked if they want to create an account or log in if they choose to checkout as a guest.
-- Expect the guest user's information to be saved in the system if they choose to create an account.
+Edge Cases:
+- If the user enters invalid or incomplete information, the system should display an error message.
+- If the user enters a non-existent or invalid email address, the system should display an error message.
 
-3. Test for logged-in user checkout:
-- Expect user to see an option to login on the checkout page if they are not already logged in.
-- Expect user to be redirected to the login page if they click on the "Login" button.
-- Expect user to be prompted to enter their shipping and billing information if they are not already saved in the system.
-- Expect user to be given the option to save their information for future use.
+2. Test Case: Checkout as a logged-in user
+Expectation: A user can check out as a logged-in user by using their existing account information.
 
-4. Test for displaying information:
-- Expect user to see a summary of their order (items, quantity, price) on the checkout page.
-- Expect user to see the shipping and billing information they entered or previously saved.
-- Expect user to see the total cost of their order (including tax and shipping fees) before they confirm their order.
+Specifications:
+- Open the website and add items to the shopping cart.
+- Log in with an existing user account.
+- Click on the checkout button and verify that the system pre-populates the user's saved shipping address, billing address, and payment information.
+- Verify that the user can edit or update the checkout information if necessary.
+- Verify that after submitting the checkout information, the system displays a confirmation message and a summary of the order.
+- Verify that the user receives an order confirmation email with the details of the order.
 
-5. Test for completing the order:
-- Expect user to be prompted to confirm their order before it is processed.
-- Expect user to see a message indicating that their order has been successfully placed.
-- Expect user to receive an email confirmation of their order.
-- Expect the items in the user's cart to be removed after the order is completed.
+Edge Cases:
+- If the user's saved information is invalid or incomplete, the system should prompt the user to update the information.
+- If the user enters invalid or incomplete information, the system should display an error message.
 
-6. Test for error handling:
-- Expect user to see an error message if there is an issue with their payment information.
-- Expect user to see an error message if there is an issue with their shipping or billing information.
-- Expect user to see an error message if there is an issue with the system processing their order.
+3. Test Case: Empty Cart
+Expectation: If the cart is empty, the user should not be able to proceed with the checkout process.
 
-These tests cover the basic functionality of the shopping cart checkout feature, including handling empty carts, guest checkout, logged-in user checkout, displaying order information, completing the order, and error handling.
+Specifications:
+- Open the website and verify that the shopping cart is empty.
+- Click on the checkout button and verify that the system displays an error message indicating that the cart is empty.
+
+Edge Cases:
+- If the user tries to add an out-of-stock item to the cart, the system should display an error message.
+
+4. Test Case: Account Creation or Login Prompt
+Expectation: If the user checks out as a guest, the system should prompt the user to create an account or log in.
+
+Specifications:
+- Open the website and add items to the shopping cart.
+- Click on the checkout button and select "checkout as a guest" option.
+- Verify that the system prompts the user to create an account or log in.
+- Verify that the user can choose to ignore the prompt and proceed with the checkout process as a guest.
+
+Edge Cases:
+- If the user already has an existing account, the system should prompt the user to log in instead of creating a new account.
+- If the user is already logged in, the system should skip the account creation or login prompt.
