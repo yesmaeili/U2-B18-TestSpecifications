@@ -29,55 +29,51 @@ Expect concatOdds([1, 3, 5], [1, 3, 3, 5]) to be equal to [1, 3, 5]
 
 Functional Tests:
 Functional Tests for Shopping Cart Checkout Feature:
+Test Specifications for Shopping Cart Checkout Feature:
 
-1. Test Case: Checkout as a guest
-Expectation: A user can check out as a guest without creating an account. The system should not require the user to log in.
+1. When a user with an empty cart selects the checkout option:
+   - Expectation: The user should be notified that their cart is empty.
+   - The user should be provided with options to continue shopping or go back to the cart.
 
-Specifications:
-- Open the website and add items to the shopping cart.
-- Click on the checkout button and select "checkout as a guest" option.
-- Verify that the system prompts for the necessary information like shipping address, billing address, and payment information.
-- Verify that after submitting the checkout information, the system displays a confirmation message and a summary of the order.
-- Verify that the user receives an order confirmation email with the details of the order.
+2. When a guest user proceeds to checkout without creating an account:
+   - Expectation: The user should be able to enter their shipping and billing information as a guest.
+   - The user should be asked if they want to create an account or log in for future purchases.
+   - The user should be able to proceed to the payment step without logging in.
 
-Edge Cases:
-- If the user enters invalid or incomplete information, the system should display an error message.
-- If the user enters a non-existent or invalid email address, the system should display an error message.
+3. When a guest user decides to create an account during checkout:
+   - Expectation: The user should be prompted to enter their email address and password to create an account.
+   - The user's entered information should be associated with the newly created account.
+   - The user should be able to proceed to the payment step after creating the account.
 
-2. Test Case: Checkout as a logged-in user
-Expectation: A user can check out as a logged-in user by using their existing account information.
+4. When a registered user logs in during checkout:
+   - Expectation: The user should be prompted to enter their login credentials (email and password).
+   - The user's entered credentials should be validated.
+   - If the credentials are valid, the user should be logged in and their saved shipping and billing information should be pre-filled.
+   - The user should be able to proceed to the payment step after logging in.
 
-Specifications:
-- Open the website and add items to the shopping cart.
-- Log in with an existing user account.
-- Click on the checkout button and verify that the system pre-populates the user's saved shipping address, billing address, and payment information.
-- Verify that the user can edit or update the checkout information if necessary.
-- Verify that after submitting the checkout information, the system displays a confirmation message and a summary of the order.
-- Verify that the user receives an order confirmation email with the details of the order.
+5. When a user proceeds to the payment step:
+   - Expectation: The user should be able to select a payment method (credit card, PayPal, etc.).
+   - The user should be able to enter their payment details securely.
+   - The user's entered payment details should be validated for correctness.
+   - If any errors are encountered, the user should be shown appropriate error messages.
 
-Edge Cases:
-- If the user's saved information is invalid or incomplete, the system should prompt the user to update the information.
-- If the user enters invalid or incomplete information, the system should display an error message.
+6. When a user completes the checkout process:
+   - Expectation: The user should receive an order confirmation.
+   - The user should be provided with an order summary containing details such as items purchased, shipping address, billing information, and total cost.
+   - The user should be given an order number or reference for future reference.
 
-3. Test Case: Empty Cart
-Expectation: If the cart is empty, the user should not be able to proceed with the checkout process.
+7. When the user encounters any errors or issues during the checkout process:
+   - Expectation: Proper error messages should be displayed to the user indicating the cause of the error.
+   - The user should be able to correct the error or take appropriate action to resolve the issue.
 
-Specifications:
-- Open the website and verify that the shopping cart is empty.
-- Click on the checkout button and verify that the system displays an error message indicating that the cart is empty.
+8. When a user abandons the checkout process at any step:
+   - Expectation: The user's cart should remain unchanged.
+   - The user should be able to resume the checkout process from where they left off, with all previously entered information pre-filled.
 
-Edge Cases:
-- If the user tries to add an out-of-stock item to the cart, the system should display an error message.
+9. When the user interacts with the checkout steps:
+   - Expectation: The user should be provided with clear and intuitive navigation options to move forward or backward through the checkout steps.
+   - The user should be able to review and modify their entered information at any step before finalizing the purchase.
 
-4. Test Case: Account Creation or Login Prompt
-Expectation: If the user checks out as a guest, the system should prompt the user to create an account or log in.
-
-Specifications:
-- Open the website and add items to the shopping cart.
-- Click on the checkout button and select "checkout as a guest" option.
-- Verify that the system prompts the user to create an account or log in.
-- Verify that the user can choose to ignore the prompt and proceed with the checkout process as a guest.
-
-Edge Cases:
-- If the user already has an existing account, the system should prompt the user to log in instead of creating a new account.
-- If the user is already logged in, the system should skip the account creation or login prompt.
+10. When the user completes the checkout process successfully:
+    - Expectation: The items in the user's cart should be removed or marked as purchased.
+    - The user should receive an email confirmation with the order details.
